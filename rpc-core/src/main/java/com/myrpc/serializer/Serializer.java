@@ -1,4 +1,4 @@
-package serializer;
+package com.myrpc.serializer;
 
 import java.io.IOException;
 

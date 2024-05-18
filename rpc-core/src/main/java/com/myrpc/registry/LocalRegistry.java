@@ -1,4 +1,4 @@
-package registry;
+package com.myrpc.registry;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

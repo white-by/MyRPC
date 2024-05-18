@@ -1,16 +1,17 @@
 package provider;
 
+import com.myrpc.RpcApplication;
 import com.myrpc.registry.LocalRegistry;
 import com.myrpc.server.HttpServer;
 import com.myrpc.server.VertxHttpServer;
 import service.UserService;
 
-public class SimpleProviderExample {
+public class ProviderExample {
     public static void main(String[] args) {
-        //注册
+        RpcApplication.init();
         LocalRegistry.register(UserService.class.getName(), UserServiceImpl.class);
 
         HttpServer httpServer = new VertxHttpServer();
-        httpServer.doStart(8080);
+        httpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
     }
 }

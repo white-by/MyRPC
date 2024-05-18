@@ -11,6 +11,7 @@
         <module name="rpc-common" />
         <module name="rpc-provider" />
         <module name="rpc-consumer" />
+        <module name="rpc-core" />
       </profile>
     </annotationProcessing>
   </component>

@@ -1,14 +1,14 @@
-package server;
+package com.myrpc.server;
 
 import io.vertx.core.Handler;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.http.HttpServerResponse;
-import model.RpcRequest;
-import model.RpcResponse;
-import registry.LocalRegistry;
-import serializer.JdkSerializer;
-import serializer.Serializer;
+import com.myrpc.model.RpcRequest;
+import com.myrpc.model.RpcResponse;
+import com.myrpc.registry.LocalRegistry;
+import com.myrpc.serializer.JdkSerializer;
+import com.myrpc.serializer.Serializer;
 
 import java.io.IOException;
 import java.lang.reflect.Method;

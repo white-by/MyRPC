@@ -1,4 +1,4 @@
-package server;
+package com.myrpc.server;
 
 import io.vertx.core.Vertx;
 
@@ -20,7 +20,7 @@ public class VertxHttpServer implements HttpServer {
                 System.out.println("Server is now listening on port " + port);
             }
             else {
-                System.err.println("Failed to start server: " + result.cause());
+                System.err.println("Failed to start com.myrpc.server: " + result.cause());
             }
         });
     }

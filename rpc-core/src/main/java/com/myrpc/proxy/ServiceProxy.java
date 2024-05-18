@@ -1,9 +1,9 @@
-package proxy;
+package com.myrpc.proxy;
 
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
-import model.RpcRequest;
-import model.RpcResponse;
+import com.myrpc.model.RpcRequest;
+import com.myrpc.model.RpcResponse;
 import com.myrpc.serializer.JdkSerializer;
 import com.myrpc.serializer.Serializer;
 

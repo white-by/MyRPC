@@ -1,11 +1,16 @@
 package consumer;
 
-import model.User;
+import com.myrpc.config.RpcConfig;
 import com.myrpc.proxy.ServiceProxyFactory;
+import com.myrpc.utils.ConfigUtils;
+import model.User;
 import service.UserService;
 
-public class SimpleConsumerExample {
+public class ConsumerExample {
     public static void main(String[] args) {
+        RpcConfig rpcConfig = ConfigUtils.loadConfig(RpcConfig.class, "rpc");
+        System.out.println(rpcConfig);
+
         // 动态代理
         UserService userService = ServiceProxyFactory.getProxy(UserService.class);
 
