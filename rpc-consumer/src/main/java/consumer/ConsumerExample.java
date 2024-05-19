@@ -16,13 +16,20 @@ public class ConsumerExample {
 
         User user = new User();
         user.setName("whiteby");
+        User user1 = new User();
+        user1.setName("whiteby1");
+
         // 调用
         User newUser = userService.getUser(user);
+        User newUser1 = userService.getUser(user1);
+
+
         if (newUser != null) {
             System.out.println("newUser's name is " + newUser.getName());
+            System.out.println("newUser's name is " + newUser1.getName());
         }
         else {
-            System.out.println("user == null");
+            System.out.println("user == null :(");
         }
     }
 }
