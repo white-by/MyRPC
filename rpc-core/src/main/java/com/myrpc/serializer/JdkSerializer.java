@@ -16,15 +16,10 @@ public class JdkSerializer implements Serializer{
     @Override
     public <T> T myDeserialize(byte[] bytes, Class<T> type) throws IOException {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(bytes);
-        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-        try {
+        try (ObjectInputStream objectInputStream = new ObjectInputStream(inputStream)) {
             return (T) objectInputStream.readObject();
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
-        }
-        finally {
-            objectInputStream.close();
         }
     }
 }

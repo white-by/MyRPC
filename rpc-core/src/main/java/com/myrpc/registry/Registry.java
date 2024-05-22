@@ -19,13 +19,13 @@ public interface Registry {
     //服务发现（获取某服务的所有节点，消费端）
     List<ServiceMetaInfo> serviceDiscovery(String serviceKey);
 
-    //心跳检测（服务端）
-//    void heartBeat();
-
-    //监听（消费端）
-//    void watch(String serviceNodeKey);
-
     //服务销毁
     void destroy();
+
+    //心跳检测（服务端）
+    void heartBeat();
+
+    //监听（消费端）
+    void watch(String serviceNodeKey);
 
 }
