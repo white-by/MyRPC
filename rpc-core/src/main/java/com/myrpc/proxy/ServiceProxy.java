@@ -1,7 +1,6 @@
 package com.myrpc.proxy;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.IdUtil;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import com.myrpc.RpcApplication;
@@ -16,24 +15,16 @@ import com.myrpc.loadbalancer.LoadBalancerFactory;
 import com.myrpc.model.RpcRequest;
 import com.myrpc.model.RpcResponse;
 import com.myrpc.model.ServiceMetaInfo;
-import com.myrpc.protocol.*;
 import com.myrpc.registry.Registry;
 import com.myrpc.registry.RegistryFactory;
 import com.myrpc.serializer.Serializer;
 import com.myrpc.serializer.SerializerFactory;
-import com.myrpc.server.tcp.VertxTcpClient;
-import io.vertx.core.Vertx;
-import io.vertx.core.buffer.Buffer;
-import io.vertx.core.net.NetClient;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 public class ServiceProxy implements InvocationHandler {
     @Override

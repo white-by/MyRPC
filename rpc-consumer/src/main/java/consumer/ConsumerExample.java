@@ -25,8 +25,8 @@ public class ConsumerExample {
 
 
         if (newUser != null) {
-            System.out.println("newUser's name is " + newUser.getName());
-            System.out.println("newUser's name is " + newUser1.getName());
+            System.out.println("hello! " + newUser.getName());
+            System.out.println("hello! " + newUser1.getName());
         }
         else {
             System.out.println("user == null :(");

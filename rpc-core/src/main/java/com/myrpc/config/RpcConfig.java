@@ -11,7 +11,7 @@ public class RpcConfig {
     private String name = "MyRPC";
     private String version = "1.0";
     private String serverHost = "localhost";
-    private Integer serverPort = 8082;
+    private Integer serverPort = 8088;
 
     private String loadBalancer = LoadBalancerKeys.CONSISTENT_HASH;
 
@@ -19,9 +19,7 @@ public class RpcConfig {
 
     private String tolerantStrategy = TolerantStrategyKeys.FAIL_FAST;
 
-
     //序列化器
-//    private String serializer = "jdk";
     private String serializer = SerializerKeys.JDK;
     //注册中心配置
     private RegistryConfig registryConfig = new RegistryConfig();

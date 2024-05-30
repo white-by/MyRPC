@@ -16,11 +16,11 @@ public class ProviderExample {
     public static void main(String[] args) {
         RpcApplication.init();
 
-        System.out.println("whiteby1");
+//        System.out.println("whiteby1");
         //注册
         String serviceName = UserService.class.getName();
         LocalRegistry.register(serviceName, UserServiceImpl.class);
-        System.out.println("whiteby2");
+//        System.out.println("whiteby2");
 
         RpcConfig rpcConfig = RpcApplication.getRpcConfig();
         RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
@@ -30,7 +30,7 @@ public class ProviderExample {
         serviceMetaInfo.setServiceHost(rpcConfig.getServerHost());
         serviceMetaInfo.setServicePort(rpcConfig.getServerPort());
         System.out.println(serviceName+rpcConfig.getServerHost()+rpcConfig.getServerPort());
-        System.out.println("whiteby3");
+//        System.out.println("whiteby3");
         try {
 //            System.out.println("w1");
             registry.register(serviceMetaInfo);
@@ -39,7 +39,7 @@ public class ProviderExample {
         catch (Exception e) {
             throw new RuntimeException(e);
         }
-        System.out.println("whiteby4");
+//        System.out.println("whiteby4");
 
         HttpServer httpServer = new VertxHttpServer();
         httpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
