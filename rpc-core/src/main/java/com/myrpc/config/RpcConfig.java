@@ -1,5 +1,6 @@
 package com.myrpc.config;
 
+import com.myrpc.loadbalancer.LoadBalancerKeys;
 import com.myrpc.serializer.SerializerKeys;
 import lombok.Data;
 
@@ -9,6 +10,8 @@ public class RpcConfig {
     private String version = "1.0";
     private String serverHost = "localhost";
     private Integer serverPort = 8080;
+
+    private String loadBalancer = LoadBalancerKeys.CONSISTENT_HASH;
 
 
     //序列化器

@@ -7,6 +7,8 @@ import cn.hutool.http.HttpResponse;
 import com.myrpc.RpcApplication;
 import com.myrpc.config.RpcConfig;
 import com.myrpc.constant.RpcConstant;
+import com.myrpc.loadbalancer.LoadBalancer;
+import com.myrpc.loadbalancer.LoadBalancerFactory;
 import com.myrpc.model.RpcRequest;
 import com.myrpc.model.RpcResponse;
 import com.myrpc.model.ServiceMetaInfo;
@@ -23,7 +25,9 @@ import io.vertx.core.net.NetClient;
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -56,7 +60,12 @@ public class ServiceProxy implements InvocationHandler {
                 throw new RuntimeException("暂无服务地址 :(");
             }
             //暂时获取第一个
-            ServiceMetaInfo selectedServiceMetaInfo = serviceMetaInfoList.get(0);
+//            ServiceMetaInfo selectedServiceMetaInfo = serviceMetaInfoList.get(0);
+
+            LoadBalancer loadBalancer = LoadBalancerFactory.getInstance(rpcConfig.getLoadBalancer());
+            Map<String, Object> requestParams = new HashMap<>();
+            requestParams.put("methodName", rpcRequest.getMethodName());
+            ServiceMetaInfo selectedServiceMetaInfo = loadBalancer.select(requestParams, serviceMetaInfoList);
 
 //            //发送http请求
             try (HttpResponse httpResponse = HttpRequest.post(selectedServiceMetaInfo.getServiceAddress())
