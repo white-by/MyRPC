@@ -7,6 +7,8 @@ import cn.hutool.http.HttpResponse;
 import com.myrpc.RpcApplication;
 import com.myrpc.config.RpcConfig;
 import com.myrpc.constant.RpcConstant;
+import com.myrpc.fault.retry.RetryStrategy;
+import com.myrpc.fault.retry.RetryStrategyFactory;
 import com.myrpc.loadbalancer.LoadBalancer;
 import com.myrpc.loadbalancer.LoadBalancerFactory;
 import com.myrpc.model.RpcRequest;
@@ -61,31 +63,34 @@ public class ServiceProxy implements InvocationHandler {
             }
             //暂时获取第一个
 //            ServiceMetaInfo selectedServiceMetaInfo = serviceMetaInfoList.get(0);
-
             LoadBalancer loadBalancer = LoadBalancerFactory.getInstance(rpcConfig.getLoadBalancer());
             Map<String, Object> requestParams = new HashMap<>();
             requestParams.put("methodName", rpcRequest.getMethodName());
             ServiceMetaInfo selectedServiceMetaInfo = loadBalancer.select(requestParams, serviceMetaInfoList);
 
-//            //发送http请求
-            try (HttpResponse httpResponse = HttpRequest.post(selectedServiceMetaInfo.getServiceAddress())
-                    .body(bodyBytes)
-                    .execute()) {
-                byte[] result = httpResponse.bodyBytes();
-                //反序列化
-                RpcResponse rpcResponse = serializer.myDeserialize(result, RpcResponse.class);
-                return rpcResponse.getData();
-
-            }
-
             //发送tcp请求
 //            RpcResponse rpcResponse = new VertxTcpClient().doRequest(rpcRequest, selectedServiceMetaInfo);
 //            return rpcResponse.getData();
+            // 使用重试机制发送 HTTP 请求
+            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+            RpcResponse rpcResponse = retryStrategy.doRetry(() -> {
+                try (HttpResponse httpResponse = HttpRequest.post(selectedServiceMetaInfo.getServiceAddress())
+                        .body(bodyBytes)
+                        .execute()) {
+                    byte[] result = httpResponse.bodyBytes();
+                    return serializer.myDeserialize(result, RpcResponse.class);
+                }
+            });
+
+            // 返回响应数据
+            return rpcResponse.getData();
+
         }
         catch (IOException e) {
             e.printStackTrace();
         }
 
         return null;
+
     }
 }

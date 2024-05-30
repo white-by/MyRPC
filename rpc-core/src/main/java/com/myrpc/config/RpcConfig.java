@@ -1,5 +1,6 @@
 package com.myrpc.config;
 
+import com.myrpc.fault.retry.RetryStrategyKeys;
 import com.myrpc.loadbalancer.LoadBalancerKeys;
 import com.myrpc.serializer.SerializerKeys;
 import lombok.Data;
@@ -12,6 +13,8 @@ public class RpcConfig {
     private Integer serverPort = 8080;
 
     private String loadBalancer = LoadBalancerKeys.CONSISTENT_HASH;
+
+    private String retryStrategy = RetryStrategyKeys.NO;
 
 
     //序列化器
