@@ -1,1 +1,2 @@
 jdk=com.myrpc.serializer.JdkSerializer
+json=com.myrpc.serializer.JsonSerializer

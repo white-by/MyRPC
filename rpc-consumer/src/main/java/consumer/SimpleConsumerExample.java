@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class SimpleConsumerExample {
     public static void main(String[] args) {
-//        int serverPort = readPortFromCommandLine();
+        int serverPort = readPortFromCommandLine();
 
         // 获取服务的代理对象
         UserService userService = ServiceProxyFactory.getProxy(UserService.class);

@@ -9,7 +9,7 @@ public class FactorialServiceImpl implements FactorialService {
         for (int i = 1; i <= n; i++) {
             result *= i;
         }
-        System.out.println("调用了Factorial方法");
+        System.out.println("调用了Factorial方法，从1累乘到" + n);
         return result;
     }
 }

@@ -4,13 +4,21 @@ import com.myrpc.model.ServiceMetaInfo;
 
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.concurrent.ConcurrentSkipListMap;
 
 public class ConsistentHashLoadBalancer implements LoadBalancer {
 
-    private final TreeMap<Integer, ServiceMetaInfo> virtualNodes = new TreeMap<>();
+    private final ConcurrentSkipListMap<Integer, ServiceMetaInfo> virtualNodes = new ConcurrentSkipListMap<>();
+    private static final int DEFAULT_VIRTUAL_NODE_NUM = 100;
+    private final int virtualNodeNum;
 
-    private static final int VIRTUAL_NODE_NUM = 100;
+    public ConsistentHashLoadBalancer() {
+        this(DEFAULT_VIRTUAL_NODE_NUM);
+    }
+
+    public ConsistentHashLoadBalancer(int virtualNodeNum) {
+        this.virtualNodeNum = virtualNodeNum;
+    }
 
     @Override
     public ServiceMetaInfo select(Map<String, Object> requestParams, List<ServiceMetaInfo> serviceMetaInfoList) {
@@ -20,7 +28,7 @@ public class ConsistentHashLoadBalancer implements LoadBalancer {
 
         // 构建虚拟节点环
         for (ServiceMetaInfo serviceMetaInfo : serviceMetaInfoList) {
-            for (int i = 0; i < VIRTUAL_NODE_NUM; i++) {
+            for (int i = 0; i < virtualNodeNum; i++) {
                 int hash = getHash(serviceMetaInfo.getServiceAddress() + "#" + i);
                 virtualNodes.put(hash, serviceMetaInfo);
             }
@@ -42,4 +50,3 @@ public class ConsistentHashLoadBalancer implements LoadBalancer {
         return key.hashCode();
     }
 }
-

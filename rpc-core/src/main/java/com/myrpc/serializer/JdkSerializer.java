@@ -2,7 +2,7 @@ package com.myrpc.serializer;
 
 import java.io.*;
 
-public class JdkSerializer implements Serializer{
+public class JdkSerializer implements Serializer {
     @Override
     public <T> byte[] mySerialize(T object) throws IOException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

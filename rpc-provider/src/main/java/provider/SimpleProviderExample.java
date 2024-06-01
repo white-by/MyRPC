@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class SimpleProviderExample {
     public static void main(String[] args) {
-//        int serverPort = readPortFromCommandLine();
+        int serverPort = readPortFromCommandLine();
 
         //注册
         LocalRegistry.register(UserService.class.getName(), UserServiceImpl.class);
@@ -25,7 +25,7 @@ public class SimpleProviderExample {
         LocalRegistry.register(SayWelcomeService.class.getName(), SayWelcomeServiceImpl.class);
 
         HttpServer httpServer = new VertxHttpServer();
-        httpServer.doStart(8081);
+        httpServer.doStart(8080);
     }
 
     // 从命令行读取端口号

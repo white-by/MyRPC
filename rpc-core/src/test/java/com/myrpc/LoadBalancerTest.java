@@ -1,5 +1,6 @@
 package com.myrpc;
 
+import com.myrpc.loadbalancer.ConsistentHashLoadBalancer;
 import com.myrpc.loadbalancer.LoadBalancer;
 import com.myrpc.loadbalancer.RoundRobinLoadBalancer;
 import com.myrpc.model.ServiceMetaInfo;
@@ -13,8 +14,8 @@ import java.util.Map;
 
 public class LoadBalancerTest {
 
-//    final LoadBalancer loadBalancer = new ConsistentHashLoadBalancer();
-    final LoadBalancer loadBalancer = new RoundRobinLoadBalancer();
+    final LoadBalancer loadBalancer = new ConsistentHashLoadBalancer();
+//    final LoadBalancer loadBalancer = new RoundRobinLoadBalancer();
 
     @Test
     public void select() {
