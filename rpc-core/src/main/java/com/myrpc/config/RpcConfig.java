@@ -10,8 +10,8 @@ import lombok.Data;
 public class RpcConfig {
     private String name = "MyRPC";
     private String version = "1.0";
-    private String serverHost = "localhost";
-    private Integer serverPort = 8088;
+    private String serverHost = "0.0.0.0";
+    private Integer serverPort = 8888;
 
     private String loadBalancer = LoadBalancerKeys.CONSISTENT_HASH;
 
