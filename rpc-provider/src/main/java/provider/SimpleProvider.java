@@ -48,7 +48,7 @@ import com.simplerpc.server.VertxHttpServer;
 import provider.impl.*;
 import service.*;
 
-public class SimpleProviderExample {
+public class SimpleProvider {
     public static void main(String[] args) {
         // 初始化配置
         Config config = new Config();

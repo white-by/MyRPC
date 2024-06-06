@@ -59,7 +59,7 @@
                             <addClasspath>true</addClasspath>
                             <useUniqueVersions>false</useUniqueVersions>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>provider.SimpleProviderExample</mainClass>
+                            <mainClass>provider.SimpleProvider</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

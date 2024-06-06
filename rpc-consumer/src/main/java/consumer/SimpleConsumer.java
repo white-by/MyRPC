@@ -76,7 +76,7 @@ import model.User;
 import proxy.ServiceProxyFactory;
 import service.*;
 
-public class SimpleConsumerExample {
+public class SimpleConsumer {
     public static void main(String[] args) {
         // 解析命令行参数
         String serverIp = null;
