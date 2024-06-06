@@ -1,0 +1,2 @@
+failFast=com.myrpc.exception.tolerant.FailFastTolerantStrategy
+failSafe=com.myrpc.exception.tolerant.FailSafeTolerantStrategy

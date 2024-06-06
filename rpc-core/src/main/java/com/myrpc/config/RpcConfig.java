@@ -1,7 +1,7 @@
 package com.myrpc.config;
 
-import com.myrpc.fault.retry.RetryStrategyKeys;
-import com.myrpc.fault.tolerant.TolerantStrategyKeys;
+import com.myrpc.exception.retry.RetryStrategyKeys;
+import com.myrpc.exception.tolerant.TolerantStrategyKeys;
 import com.myrpc.loadbalancer.LoadBalancerKeys;
 import com.myrpc.serializer.SerializerKeys;
 import lombok.Data;

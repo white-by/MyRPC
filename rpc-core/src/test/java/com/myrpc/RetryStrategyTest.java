@@ -1,7 +1,7 @@
 package com.myrpc;
 
-import com.myrpc.fault.retry.NoRetryStrategy;
-import com.myrpc.fault.retry.RetryStrategy;
+import com.myrpc.exception.retry.NoRetryStrategy;
+import com.myrpc.exception.retry.RetryStrategy;
 import com.myrpc.model.RpcResponse;
 import org.junit.Test;
 
